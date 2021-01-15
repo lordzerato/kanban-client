@@ -28,6 +28,7 @@
              v-if="halaman==='home'"
              :grups="categories"
              :tetugas="tasks"
+             :pengguna="orang"
              @gantiHalaman="gantiHalaman"></home>
             <!-- <button class="category" v-on:click.prevent="gantiHalaman('formTag')">New Tag</button> -->
             <add-category
@@ -60,14 +61,15 @@ export default {
         return {
             halaman: 'login',
             isLogin: false,
-            baseurl: 'http://localhost:3000',
+            baseurl: 'https://kanban-app-fdr.herokuapp.com',
             categories: [],
             loginFail: '',
             regSuccess: '',
             regFail: '',
             tagFail: '',
             taskFail: '',
-            tasks: []
+            tasks: [],
+            orang: []
         }
     },
     components: {
@@ -136,9 +138,7 @@ export default {
           }
         })
         .then( ({ data }) => {
-          this.categories = data.map( el => {
-            return { id: el.id, tag: el.tag }
-          } )
+          this.categories = data
           this.getTask()
         } )
         .catch( err => {
@@ -226,14 +226,23 @@ export default {
           }
         })
         .then( ({ data }) => {
-          console.log(data);
-          this.tasks = data.map( el => {
-            return { id: el.id, title: el.title, CategoryId: el.CategoryId }
-          } )
+          this.tasks = data
         } )
         .catch( err => {
           console.log(err);
         } )
+      },
+      getUser(){
+        axios({
+          method: 'GET',
+          url: this.baseurl + '/register'
+        })
+        .then( ({data}) => {
+          this.orang = data
+        } )
+        .catch( err => {
+          console.log(err);
+        })
       }
     },
     created() {
@@ -241,11 +250,24 @@ export default {
         this.isLogin = true
         this.halaman = 'home'
         this.getCategories()
+        this.getUser()
       }
     }
 }
 </script>
 
 <style>
+#container {
+    margin: 0px;
+    max-width: 100%;
+    padding: 0px;
+}
 
+.home {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 30px;
+    flex-wrap: wrap;
+}
 </style>

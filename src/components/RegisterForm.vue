@@ -41,5 +41,7 @@ export default {
 </script>
 
 <style>
-
+.register {
+    text-align: center;
+}
 </style>

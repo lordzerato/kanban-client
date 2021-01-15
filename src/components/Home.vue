@@ -3,6 +3,7 @@
         <category
          class="category"
          :tetugas="tetugas"
+         :pengguna="pengguna"
          v-for="grup in grups"
          :key="grup.id" :grup="grup"
          @gantiHalaman="$emit('gantiHalaman', 'formTask')"></category>
@@ -22,12 +23,23 @@ export default {
     components: { Category },
     name: 
         "Home",
-    props: ['grups', 'tetugas']
+    props: ['grups', 'tetugas', 'pengguna']
 }
 </script>
 
 <style>
-/* #addCttBtn {
-    errorJustify
-} */
+.category {
+    overflow-y: scroll;
+    width: 300px;
+    text-align: center;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    border-style: dotted;
+    border-width: 2px;
+    min-height: 100px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
 </style>

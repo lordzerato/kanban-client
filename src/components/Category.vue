@@ -4,8 +4,10 @@
         <task
          class="task"
          v-for="tugas in tetugas"
-         :key="item.id" v-if="condition"
-         :item="item"></task>
+         :key="tugas.id"
+         :tugas="tugas"
+         :pengguna="pengguna"
+         :categoryId="grup.id"></task>
         <button
          class="task"
          @click.prevent="$emit('gantiHalaman', 'formTask')">
@@ -25,9 +27,13 @@ export default {
             items: []
         }
     },
-    props: ['grup', 'tetugas']
+    props: ['grup', 'tetugas', 'pengguna']
 }
 </script>
 
 <style>
+.task {
+    width: 100%;
+    text-align: center;
+}
 </style>
