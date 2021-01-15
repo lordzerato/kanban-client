@@ -10,7 +10,7 @@ body {
     float: left;
 }
 
-#app {
+#container {
     margin: 0px;
     max-width: 100%;
     padding: 0px;
@@ -22,8 +22,10 @@ body {
 
 .home {
     display: flex;
+    flex-direction: row;
     justify-content: flex-start;
     padding: 30px;
+    flex-wrap: wrap;
 }
 
 .category {
@@ -33,4 +35,13 @@ body {
     margin-bottom: 30px;
     border-style: dotted;
     border-width: 2px;
+    min-height: 100px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.task {
+    width: 100%;
+    text-align: center;
 }
