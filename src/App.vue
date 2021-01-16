@@ -29,6 +29,7 @@
              :grups="categories"
              :tetugas="tasks"
              :pengguna="orang"
+             @getSelected="getSelected"
              @gantiHalaman="gantiHalaman"></home>
             <!-- <button class="category" v-on:click.prevent="gantiHalaman('formTag')">New Tag</button> -->
             <add-category
@@ -243,6 +244,15 @@ export default {
         .catch( err => {
           console.log(err);
         })
+      },
+      getSelected(id) {
+        this.categories.map( el => {
+          if (el.id === id) {
+            return el.attr = 'true'
+          } else {
+            return el.attr = 'false'
+          }
+        } )
       }
     },
     created() {

@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">
+    <div class="text-center noselect">
         {{ grup.tag }}<br>
         <task
          class="task"
@@ -9,8 +9,8 @@
          :pengguna="pengguna"
          :categoryId="grup.id"></task>
         <button
-         class="task"
-         @click.prevent="$emit('gantiHalaman', 'formTask')">
+         class="btn-success"
+         @click.prevent="$emit('addNew', grup.id)">
             Add new Task
         </button>
     </div>
@@ -22,18 +22,26 @@ import Task from './Task'
 export default {
     components: { Task },
     name: "Category",
-    data() {
-        return {
-            items: []
+    props: ['grup', 'tetugas', 'pengguna'],
+    methods: {
+        addNew(id) {
+            this.cttSelected = id
         }
     },
-    props: ['grup', 'tetugas', 'pengguna']
 }
 </script>
 
 <style>
 .task {
     width: 100%;
-    text-align: center;
+    text-align: right;
+}
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 </style>

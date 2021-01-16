@@ -6,13 +6,16 @@
          :pengguna="pengguna"
          v-for="grup in grups"
          :key="grup.id" :grup="grup"
-         @gantiHalaman="$emit('gantiHalaman', 'formTask')"></category>
-        <button
-         class="category"
-         id="addCttBtn"
-         @click.prevent="$emit('gantiHalaman', 'formTag')">
-            Add new cattegory
-        </button>
+         @addNew="addNew"
+         @gantiHalaman="$emit('gantiHalaman', 'formTask')">
+        </category>
+        <div class="category">
+            <button
+             class="btn-primary"
+             @click.prevent="$emit('gantiHalaman', 'formTag')">
+                Add new cattegory
+            </button>
+        </div>
     </div>
 </template>
 
@@ -23,7 +26,13 @@ export default {
     components: { Category },
     name: 
         "Home",
-    props: ['grups', 'tetugas', 'pengguna']
+    props: ['grups', 'tetugas', 'pengguna'],
+    methods: {
+        addNew(id) {
+            this.$emit('getSelected', id)
+            this.$emit('gantiHalaman', 'formTask')
+        }
+    },
 }
 </script>
 

@@ -14,7 +14,10 @@
                     <option value="">--Please Select--</option>
                     <option
                     v-for="grup in grups"
-                    :key="grup.id" :value="grup.id" v-text="grup.tag"></option>
+                    :key="grup.id"
+                    :value="grup.id"
+                    :selected="grup.attr"
+                    v-text="grup.tag"></option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary btn-block" v-on:click.prevent="$emit('addTask', newData)">Add</button>

@@ -1,13 +1,14 @@
 <template>
     <div class="card"
-     v-if="tugas.CategoryId==categoryId">
+     v-if="tugas.CategoryId==categoryId"
+     draggable="true">
         <!-- <img class="card-img-top" src="holder.js/100x180/" alt=""> -->
         <div class="card-body">
-            <h4 class="card-title">{{ tugas.title }}</h4>
-        <p class="card-text">{{ getUser(tugas.CategoryId) }}</p>
+            <h4 class="card-title" id="title">{{ tugas.title }}</h4>
+        <span>{{ author }}</span>
         <button
-            type="button" onclick="" class="btnEdit">Edit</button>
-        <button type="button" onclick="" class="btnDelete">Delete</button>
+            type="button" onclick="">-</button>
+        <button type="button" onclick="">x</button>
             <user></user>
         </div>
     </div>
@@ -28,17 +29,21 @@ export default {
     methods: {
         getUser(idCtt) {
             this.pengguna.forEach( el => {
-                console.log(idCtt, el.CategoryId);
-                if (idCtt === el.CategoryId) return el.name
+                if (+idCtt === +el.id){
+                    return this.author = el.name
+                }
             });
         }
+    },
+    mounted() {
+        this.getUser(this.tugas.UserId)
     },
 }
 </script>
 
 <style>
-    .btnEdit {
-        width: 50px;
-        font-size: 14px;
-    }
+#title {
+    text-align: center;
+    word-wrap: break-word;
+}
 </style>
